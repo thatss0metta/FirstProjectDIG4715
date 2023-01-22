@@ -9,20 +9,23 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rd2d;
     private float horizontal;
     private float speed = 8f;
-    private int scoreValue = 0;
     public GameObject startText;
     public GameObject player; 
     public GameObject Score;
-    
+    public GameObject WinTextObject;
+    public int scoreValue = 0;
+    public AudioSource Source;
+    public AudioClip Win;
+    public GameObject winParticleObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        rd2d = GetComponent<Rigidbody2D>();
-        Score.scoreValue = "Score";
-        Score = scoreValue.ToString();        
+        rd2d = GetComponent<Rigidbody2D>();        
         startText.SetActive(true);
         StartCoroutine(StartScreen());
+        WinTextObject.SetActive(false);
+        winParticleObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -33,14 +36,20 @@ public class PlayerController : MonoBehaviour
         rd2d.AddForce(new Vector2(hozMovement * speed, vertMovement * speed));
     }
 
-     private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-       if (collision.collider.tag == "Collectible")
+        if(other.gameObject.CompareTag("Collectible"))
         {
-            scoreValue += 1;
-            Score = scoreValue.ToString();
-            Destroy(collision.collider.gameObject);
+            other.gameObject.SetActive(false);
+            scoreValue = scoreValue + 1;
+            
         }
+
+        if(scoreValue>=5)
+        {
+            WinTextObject.SetActive(true);
+            Source.PlayOneShot(Win);
+        } 
     }
 
     IEnumerator StartScreen()
