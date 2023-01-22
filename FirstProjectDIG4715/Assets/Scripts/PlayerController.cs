@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,13 +10,19 @@ public class PlayerController : MonoBehaviour
     private float horizontal;
     private float speed = 8f;
     private int scoreValue = 0;
-    public Text score;
+    public GameObject startText;
+    public GameObject player; 
+    public GameObject Score;
     
+
     // Start is called before the first frame update
     void Start()
     {
-      rd2d = GetComponent<Rigidbody2D>();
-      score.text = scoreValue.ToString();  
+        rd2d = GetComponent<Rigidbody2D>();
+        Score.scoreValue = "Score";
+        Score = scoreValue.ToString();        
+        startText.SetActive(true);
+        StartCoroutine(StartScreen());
     }
 
     // Update is called once per frame
@@ -31,8 +38,17 @@ public class PlayerController : MonoBehaviour
        if (collision.collider.tag == "Collectible")
         {
             scoreValue += 1;
-            score.text = scoreValue.ToString();
+            Score = scoreValue.ToString();
             Destroy(collision.collider.gameObject);
         }
     }
-}    
+
+    IEnumerator StartScreen()
+    {
+        yield return new WaitForSeconds (2);
+        startText.SetActive(false);
+    }
+}
+
+
+   

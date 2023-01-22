@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5543397844414669788}
   - component: {fileID: 2465200017544158742}
   - component: {fileID: 4426144139190409675}
+  - component: {fileID: 9108944548095776438}
   m_Layer: 0
   m_Name: apple_sprite 1
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,3 +127,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.24095303, y: 0.28883862}
   m_EdgeRadius: 0
+--- !u!114 &9108944548095776438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8856595185845094286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa675570c9181c4cbad6b5da4cc5608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: {fileID: 0}
+  startText: {fileID: 0}
+  player: {fileID: 0}
+  Score: {fileID: 0}
